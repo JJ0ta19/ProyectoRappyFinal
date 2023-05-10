@@ -14,7 +14,7 @@ public class Cliente {
     private  String contraseña;
     private  String nombre;
     private  String apellido;
-    private  String telefono;
+    private  String usuario;
     private  String ciudad;
 
     @Transient
@@ -22,8 +22,8 @@ public class Cliente {
 
     //Porque Set y no Rol, obligamos a que los datos no se repitan
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "nombre_roles",
-                joinColumns = @JoinColumn(name = "nombre_id"),
+    @JoinTable(name = "user_roles",
+                joinColumns = @JoinColumn(name = "user_id"),
                 inverseJoinColumns = @JoinColumn(name = "rol_id"))
 
     private Set<Rol> Roles;
@@ -32,19 +32,20 @@ public class Cliente {
     public Cliente(){}
 
     public Cliente(int id, String correo, String contraseña,String nombre,String apellido
-            ,String telefono,String ciudad, String confirmPassword) {
+            ,String usuario,String ciudad, String confirmPassword) {
 
         this.id = id;
         this.correo = correo;
         this.contraseña = contraseña;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.telefono = telefono;
+        this.usuario = usuario;
         this.ciudad = ciudad;
         this.confirmPassword = confirmPassword;
     }
 
     //Getters and Setters
+
     public int getId() {
         return id;
     }
@@ -85,13 +86,6 @@ public class Cliente {
         this.apellido = apellido;
     }
 
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
 
     public String getCiudad() {
         return ciudad;
@@ -117,6 +111,14 @@ public class Cliente {
         this.confirmPassword = confirmPassword;
     }
 
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
     @Override
     public String toString() {
         return "Cliente{" +
@@ -125,7 +127,7 @@ public class Cliente {
                 ", contraseña='" + contraseña + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
-                ", telefono='" + telefono + '\'' +
+                ", usuario='" + usuario + '\'' +
                 ", ciudad='" + ciudad + '\'' +
                 ", confirmPassword='" + confirmPassword + '\'' +
                 ", Roles=" + Roles +
@@ -137,11 +139,11 @@ public class Cliente {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cliente cliente = (Cliente) o;
-        return id == cliente.id && Objects.equals(correo, cliente.correo) && Objects.equals(contraseña, cliente.contraseña) && Objects.equals(nombre, cliente.nombre) && Objects.equals(apellido, cliente.apellido) && Objects.equals(telefono, cliente.telefono) && Objects.equals(ciudad, cliente.ciudad) && Objects.equals(confirmPassword, cliente.confirmPassword) && Objects.equals(Roles, cliente.Roles);
+        return id == cliente.id && Objects.equals(correo, cliente.correo) && Objects.equals(contraseña, cliente.contraseña) && Objects.equals(nombre, cliente.nombre) && Objects.equals(apellido, cliente.apellido) && Objects.equals(usuario, cliente.usuario) && Objects.equals(ciudad, cliente.ciudad) && Objects.equals(confirmPassword, cliente.confirmPassword) && Objects.equals(Roles, cliente.Roles);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, correo, contraseña, nombre, apellido, telefono, ciudad, confirmPassword, Roles);
+        return Objects.hash(id, correo, contraseña, nombre, apellido, usuario, ciudad, confirmPassword, Roles);
     }
 }

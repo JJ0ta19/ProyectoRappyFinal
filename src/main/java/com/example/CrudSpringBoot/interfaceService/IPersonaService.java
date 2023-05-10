@@ -1,6 +1,5 @@
-package com.example.CrudSpringBoot.interfaceService;
+/*package com.example.CrudSpringBoot.interfaceService;
 
-import com.example.CrudSpringBoot.modelo.Persona;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.List;
@@ -14,4 +13,4 @@ public interface IPersonaService {
     public int save (Persona p);
     public void delete(int id);
 
-}
+}*/

@@ -1,29 +1,29 @@
-<div class="card-body">
-    <div class="table-responsive">
-        <table id="userList"
-               class="table table-bordered table-hover table-striped">
-            <thead class="thead-light">
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Username</th>
-                <th scope="col">E-mail</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Cristian</td>
-                <td>Ruiz</td>
-                <td>c.r.username</td>
-                <td>c.r.username@blog.com</td>
-                <td><a href="#"><i class="fas fa-edit"></i></a> | <a href="#"><i
-                        class="fas fa-user-times"></i></a></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+<div class="table-responsive" xmlns:th="http://www.w3.org/1999/xhtml">
+    <table id="userList" class="table table-bordered table-hover table-striped">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">E-mail</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="cliente: ${clientelist}">
+            <td th:text="${cliente.id}"></td>
+            <td th:text="${cliente.nombre}"></td>
+            <td th:text="${cliente.apellido}"></td>
+            <td th:text="${cliente.usuario}"></td>
+            <td th:text="${cliente.correo}"></td>
 
+
+            <td>
+                <a href="#" th:href="@{'/editUser/'+ ${cliente.id}}"><i class="fas fa-edit"></i></a>
+                | <a href="#" th:onclick="'javascript:confirmDelete(\''+ ${cliente.id} +'\');'"><i class="fas fa-user-times"></i></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
