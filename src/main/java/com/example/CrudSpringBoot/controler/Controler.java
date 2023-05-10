@@ -29,7 +29,7 @@ public class Controler {
     public String listar(Model model){
         List<Persona>personas= service.listar();
         model.addAttribute("personas", personas);
-        return "index";
+        return "basedatos";
     }
 
     @GetMapping("/new")

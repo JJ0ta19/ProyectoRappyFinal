@@ -1,6 +1,7 @@
 package com.example.CrudSpringBoot.modelo;
 
 
+
 import javax.persistence.*;
 
 @Entity
@@ -15,7 +16,6 @@ public class Persona {
     private  String telefono;
 
     public Persona() {
-
     }
 
     public Persona(int id, String name, String telefono) {
