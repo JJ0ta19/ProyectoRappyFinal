@@ -25,13 +25,13 @@ import java.util.Map;
 public class UsuarioController {
 
     @Autowired
-    private UsuarioService usuarioService;
+    private UsuarioRepositoryService usuarioService;
 
     @GetMapping("/ver/{id}")
     public String verDetallesDelUsuario(@PathVariable(value = "id") Long id, Map<String,Object> modelo, RedirectAttributes flash){
         Usuario usuario = usuarioService.findOne(id);
         if (usuario == null) {
-            flash.addAttribute("error","El usuario no existe en la base de datos");
+            flash.addFlashAttribute("error","El usuario no existe en la base de datos");
             return "redirect:/listar";
         }
         modelo.put("usuario",usuario);
@@ -43,7 +43,7 @@ public class UsuarioController {
     public String listarUsuarios(@RequestParam(name = "page",defaultValue = "0") int page, Model model){
         Pageable pageRequest = PageRequest.of(page,5);
         Page<Usuario> usuarios = usuarioService.findAll(pageRequest);
-        PageRender<Usuario> pageRender = new PageRender<>("/listar",usuarios);
+        PageRender<Usuario> pageRender = new PageRender<>("/listar", usuarios);
 
         model.addAttribute("titulo","Listado de usuarios");
         model.addAttribute("usuarios",usuarios);
@@ -71,7 +71,7 @@ public class UsuarioController {
         usuarioService.save(usuario);
         status.setComplete();
         flash.addFlashAttribute("success", mensaje);
-        return "redirect:listar";
+        return "redirect:/listar";
     }
 
     @GetMapping("/form/{id}")
