@@ -34,7 +34,7 @@ public class UsuarioController {
             flash.addAttribute("error","El usuario no existe en la base de datos");
             return "redirect:/listar";
         }
-        modelo.put("Usuario",usuario);
+        modelo.put("usuario",usuario);
         modelo.put("titulo", "Detalles del usuario"+usuario.getNombre());
         return "ver";
     }
@@ -55,7 +55,7 @@ public class UsuarioController {
     @GetMapping("/form")
     public String mostrarFormularioDeRegistrarUsuario(Map<String,Object> modelo){
         Usuario usuario = new Usuario();
-        modelo.put("Usuario",usuario);
+        modelo.put("usuario", usuario);
         modelo.put("titulo","Registro de usuarios");
         return "form";
     }
@@ -66,7 +66,7 @@ public class UsuarioController {
             modelo.addAttribute("titulo","Registro de ususario");
             return "form";
         }
-        String mensaje = (usuario.getId() != 0) ? "El usuario ah sido editado con exito" : "Usuario registrado con exito";
+        String mensaje = (usuario.getId() != 0) ? "El empleado ha sido editato con exito" : "Empleado registrado con exito";
 
         usuarioService.save(usuario);
         status.setComplete();
