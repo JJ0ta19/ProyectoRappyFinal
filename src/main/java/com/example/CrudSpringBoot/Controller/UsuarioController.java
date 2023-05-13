@@ -2,6 +2,8 @@ package com.example.CrudSpringBoot.Controller;
 
 import com.example.CrudSpringBoot.Entity.Usuario;
 import com.example.CrudSpringBoot.Paginacion.PageRender;
+import com.example.CrudSpringBoot.Reportes.UsuarioExporterExcel;
+import com.example.CrudSpringBoot.Reportes.UsuarioExporterPDF;
 import com.example.CrudSpringBoot.RepositoryService.UsuarioRepositoryService;
 import com.example.CrudSpringBoot.Service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -101,5 +109,43 @@ public class UsuarioController {
         }
         return "redirect:/listar";
     }
+
+    @GetMapping("/exportarPDF")
+    public void exportarListadoDeUsuariosEnPDF(HttpServletResponse response) throws IOException {
+        response.setContentType("application/pdf");
+
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String fechaActual = dateFormatter.format(new Date());
+
+        String cabecera = "Content-Disposition";
+        String valor = "attachment; filename=Usuarios_" + fechaActual + ".pdf";
+
+        response.setHeader(cabecera,valor);
+
+        List<Usuario> usuarios = usuarioService.findAll();
+
+        UsuarioExporterPDF exporter = new UsuarioExporterPDF(usuarios);
+        exporter.exportar(response);
+    }
+
+    @GetMapping("/exportarExcel")
+    public void exportarListadoDeUsuariosEnExcel(HttpServletResponse response) throws IOException {
+        response.setContentType("application/octec-stream");
+
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String fechaActual = dateFormatter.format(new Date());
+
+        String cabecera = "Content-Disposition";
+        String valor = "attachment; filename=Usuarios_" + fechaActual + ".xlsx";
+
+        response.setHeader(cabecera,valor);
+
+        List<Usuario> usuarios = usuarioService.findAll();
+
+        UsuarioExporterExcel exporter = new UsuarioExporterExcel(usuarios);
+        exporter.exportar(response);
+    }
+
+
 
 }
