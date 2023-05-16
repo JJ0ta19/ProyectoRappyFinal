@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:replace="layout/layout :: head">
+    <meta charset="UTF-8">
+
+</head>
+<body>
+
+
+<!-- <header th:replace="layout/layout :: header"></header>-->
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+            <h1 class="text-center" th:text="${tituloDomicilio}"></h1>
+
+
+            <div class="card-body">
+
+
+                <!-- Formulario con el metodo POST -->
+                <form th:action="@{/formd}" th:object="${tarjeta}" method="POST">
+                    <input type="hidden" th:field="*{id}" th:value="${tarjeta.id}"/>
+
+
+                    <!-- Casillas para rellenar los datos, con un mensaje de error llamado de properties por si ocurre un error -->
+                    <div class="form-group">
+                        <label>Número de la tarjeta : </label>
+                        <input type="text" th:field="*{numero_tarjeta}" class="form-control" th:errorclass="'form-control alert-danger'"/>
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('numero_tarjeta')}" th:errors="*{numero_tarjeta}"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Fecha de vencimiento : </label>
+                        <input type="text" th:field="*{fecha_vencimiento}" class="form-control" th:errorclass="'form-control alert-danger'"/>
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('fecha_vencimiento')}" th:errors="*{fecha_vencimiento}"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Código de seguridad : </label>
+                        <input type="text" th:field="*{codigo_seguridad}" class="form-control" th:errorclass="'form-control alert-danger'"/>
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('codigo_seguridad')}" th:errors="*{codigo_seguridad}"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Direccion : </label>
+                        <input type="text" th:field="*{direccion}" class="form-control" th:errorclass="'form-control alert-danger'"/>
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}"></small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Ciudad : </label>
+                        <input type="text" th:field="*{ciudad}" class="form-control" th:errorclass="'form-control alert-danger'"/>
+                        <small class="form-text text-danger" th:if="${#fields.hasErrors('ciudad')}" th:errors="*{ciudad}"></small>
+                    </div>
+
+                    <div class="box-footer">
+                        <input sec:authorize="hasRole('ADMIN')" type="submit" value="Guardar" class="btn btn-outline-success" onclick="return confirm('¿Estás seguro de hacer la compra con los datos suministrados?');"> <br> <br>
+                        <input type="submit" value="Pagar" class="btn btn-outline-success" onclick="return confirm('¿Estás seguro de hacer la compra con los datos suministrados?');"> <br> <br>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer th:replace="layout/layout :: footer"></footer>
+
+</body>
+</html>

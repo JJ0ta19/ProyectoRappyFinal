@@ -15,7 +15,7 @@ import java.util.Date;
 @Setter
 @ConstructorBinding
 @Entity
-@Table(name = "usuarios", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+@Table(name = "usuarios")
 public class Usuario {
 
     @Id
@@ -37,7 +37,7 @@ public class Usuario {
 
     private String sexo;
 
-    @NotNull
+    @NotEmpty
     private String ciudad;
 
     @NotNull

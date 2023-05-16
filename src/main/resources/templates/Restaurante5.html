@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" contents="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Popsy</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins :wght@400;600;700;800&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background-color: #2D343C;
+}
+
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header{
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0.2)),
+        url(imagenes/POPSY.png);
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        min-height: 70vh;
+}
+
+.menu{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo{
+    color: aliceblue;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.menu .navbar ul li{
+    position: relative;
+    float: left;
+
+}
+
+.menu .navbar ul li a{
+    font-size: 18px;
+    padding: 20px;
+    color: aliceblue;
+    display: block;
+    font-weight: 600;
+}
+
+.menu .navbar ul li a:hover{
+    color: #F35200
+}
+
+#menu{
+    display: none;
+}
+
+.menu-icono{
+    width: 25px;
+}
+
+.menu label{
+    cursor: pointer;
+    display: none;
+}
+
+.submenu{
+    position: relative;
+}
+
+.submenu #carrito{
+    display: none;
+}
+
+.submenu:hover #carrito{
+    display: block;
+    position: absolute;
+    right: 0;
+    backdrop-filter: blur(10px);
+    top: 100%;
+    z-index: 1;
+    background-color: #4E4B5076;
+    padding: 20px;
+    min-width: 400px;
+}
+
+table{
+    width: 100%;
+}
+
+th, td{
+    color: #FFFFFF;
+}
+
+.borrar{
+    background-color: #F35200;
+    border-radius: 50%;
+    padding: 5px 10px;
+    color: #FFFFFF;
+    font-weight: 800;
+}
+
+.header-txt{
+    padding: 0 200px;
+    text-align: center;
+}
+.header-txt h1{
+    font-size: 70px;
+    line-height: 80px;
+    color: #FFFFFF;
+    margin-bottom: 20px;
+}
+
+.header-txt p{
+    font-size: 16px;
+    color: aliceblue;
+    margin-bottom: 20px;
+}
+
+.btn-1{
+    display: inline-block;
+    background-color: #F35200;
+    color: #FFFFFF;
+    padding: 13px 35px;
+    border-radius: 25px;
+    text-transform: capitalize;
+    font-size: 16px;
+}
+
+.btn-1:hover{
+    background-color: #d74801;
+}
+
+.icons{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+    padding: 10px;
+}
+
+.icon img{
+    width: 30px;
+}
+
+.products{
+    padding: 70px 0 0 0;
+    text-align: center;
+}
+
+h2{
+    color: #FFFFFF;
+    font-size: 40px;
+    margin-bottom: 35px;
+}
+
+.products-content{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 35px;
+}
+
+.product img{
+    width: 250px;
+}
+
+.product h3{
+    font-size: 20px;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+}
+
+.product p{
+    font-size: 16px;
+    color: #ECEBEB;
+    margin-bottom: 10px;
+}
+
+.precio{
+    color: #F35200 !important;
+}
+
+.btn-2{
+    display: inline-block;
+    padding: 8px 17px;
+    border: 1px solid #F35200;
+    border-radius: 20px;
+    color: #FFFFFF;
+}
+
+.btn-2:hover{
+    background-color: #F35200;
+}
+
+.services{
+    margin-top: 100px;
+    padding: 70px 0;
+    background-color: #EBEFF1;
+    text-align: center;
+}
+
+.services h2{
+    color: #2D343C;
+}
+
+.services-content{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 35px;
+}
+
+.service{
+    background-color: #FFFFFF;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    padding: 35px;
+    text-align: left;
+}
+
+.service h3{
+    font-size: 20px;
+    color: #2D343C;
+    margin-bottom: 10px;
+}
+
+hr{
+    width: 100px;
+    border: 2px solid #F35200;
+}
+
+.service p{
+    font-size: 16px;
+    color: #575757;
+    margin-top: 15px;
+}
+
+.footer{
+    padding: 50px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.link h3{
+    color: #FFFFFF;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.link a{
+    font-size: 16px;
+    color: #ECEBEB;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.link a:hover{
+    color: #F35200;
+}
+
+@media(max-width: 991px){
+    .menu{
+        padding: 20px;
+    }
+
+    .menu label{
+        display: initial;
+    }
+
+    .menu .navbar{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #2D343C;
+        display: none;
+    }
+
+    .menu .navbar ul li{
+        width: 100%;
+    }
+
+    #menu:checked ~ .navbar{
+        display: initial;
+    }
+
+    .logo{
+        display: none;
+    }
+
+    .submenu:hover #carrito{
+        min-width: 100%;
+    }
+
+    .header{
+        min-height: 0vh;
+    }
+
+    .header-content{
+        padding: 100px 30px;
+    }
+
+    .header-txt{
+        padding: 0;
+    }
+
+    .products{
+        padding: 30px;
+    }
+
+    .products-content{
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .services{
+        padding: 30px;
+        margin: 0;
+    }
+
+    .services-content{
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .footer{
+        flex-direction: column;
+        text-align: center;
+    }
+}
+</style>
+
+<body>
+<header class="header">
+  <div class="menu container">
+    <a href="#" class="logo"></a>
+    <input type="checkbox" id="menu" />
+    <label for="menu">
+      <img src="images/menu.png" class="menu-icono" alt="">
+    </label>
+    <nav class="navbar">
+      <ul>
+      </ul>
+    </nav>
+    <div>
+      <ul>
+        <li class="submenu">
+          <img src="images/car.svg" id="img-carrito" alt="">
+          <div id="carrito">
+            <table id="lista-carrito">
+              <thead>
+              <tr>
+                <th>Imagen<hr></th>
+                <th>Nombre<hr></th>
+                <th>Precio<hr></th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+            <a href="#" id="vaciar-carrito" class="btn-2">Vaciar Carrito</a>
+            <a target="_blank" href="file:///C:/Users/alvar/OneDrive/Escritorio/Codigos/Programacion%20II/Proyecto/CrudSpringBoot/src/main/resources/templates/Interfaces/Domicilio.html" class="btn-2">Comprar</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="header-content container">
+    <div class="header-txt">
+      <h1>Popsy</h1>
+      <p>
+        Popsy es una compañía colombiana de origen familiar que surge como un emprendimiento de una
+        pareja de esposos, don Álvaro Londoño y su esposa Elena de Londoño, comenzaron en el punto
+        de venta de la Avenida 68 y actualmente tenemos 40 sabores de helado disponibles.
+      </p>
+      <a href="#" class="btn-1">seccion menu</a>
+    </div>
+  </div>
+</header>
+<section class="icons">
+  <div class="icon">
+    <img src="images/i1.svg" alt="">
+  </div>
+  <div class="icon">
+    <img src="images/i2.svg" alt="">
+  </div>
+  <div class="icon">
+    <img src="images/i3.svg" alt="">
+  </div>
+  <div class="icon">
+    <img src="images/i4.svg" alt="">
+  </div>
+  <div class="icon">
+    <img src="images/i5.svg" alt="">
+  </div>
+  <div class="icon">
+    <img src="images/i6.svg" alt="">
+  </div>
+  <div class="icon">
+    <img src="images/i7.svg" alt="">
+  </div>
+  <div class="icon">
+    <img src="images/i8.svg" alt="">
+  </div>
+  <div class="icon">
+    <img src="images/i9.svg" alt="">
+  </div>
+  <div class="icon">
+    <img src="images/i10.svg" alt="">
+  </div>
+</section>
+
+<section class="products containers" id="lista-1">
+  <h2>Tarrinas</h2>
+  <div class="products-content">
+
+    <div class="product">
+      <img src="imagenes/Tarrina1P.png" alt="">
+      <div class="product-txt">
+        <h3>Tarrina Arequipe</h3>
+        <p>calidad premium</p>
+        <p class="precio">$34.900</p>
+        <a href="/form" class="agregar-carrito btn-2" data-id="1">Pagar</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="imagenes/Tarrina2P.png" alt="">
+      <div class="product-txt">
+        <h3>Tarrina Mandarina Gourmet</h3>
+        <p>calidad premium</p>
+        <p class="precio">$34.900</p>
+        <a href="/form" class="agregar-carrito btn-2" data-id="1">Pagar</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="imagenes/Tarrina3P.png" alt="">
+      <div class="product-txt">
+        <h3>Tarrina Ron con Pasas</h3>
+        <p>calidad premium</p>
+        <p class="precio">$34.900</p>
+        <a href="/form" class="agregar-carrito btn-2" data-id="1">Pagar</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="imagenes/Tarrina4P.png" alt="">
+      <div class="product-txt">
+        <h3>Tarrina Maracuyá Nieve</h3>
+        <p>calidad premium</p>
+        <p class="precio">$34.900</p>
+        <a href="/form" class="agregar-carrito btn-2" data-id="1">Pagar</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="imagenes/Tarrina5P.png" alt="">
+      <div class="product-txt">
+        <h3>Tarrina Nieve Limón</h3>
+        <p>calidad premium</p>
+        <p class="precio">$34.900</p>
+        <a href="/form" class="agregar-carrito btn-2" data-id="1">Pagar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="products containers" id="lista-2">
+  <h2>Litros</h2>
+  <div class="products-content">
+
+    <div class="product">
+      <img src="imagenes/Litros1P.png" alt="">
+      <div class="product-txt">
+        <h3>Lt Oreo Gourmet</h3>
+        <p>calidad premium</p>
+        <p class="precio">$34.900</p>
+        <a href="/form" class="agregar-carrito btn-2" data-id="1">Pagar</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="imagenes/Litros2P.png" alt="">
+      <div class="product-txt">
+        <h3>Lt M&M's Gourmet</h3>
+        <p>calidad premium</p>
+        <p class="precio">$34.900</p>
+        <a href="/form" class="agregar-carrito btn-2" data-id="1">Pagar</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="imagenes/Litros3P.png" alt="">
+      <div class="product-txt">
+        <h3>Lt Frutos del Bosque Gourmet</h3>
+        <p>calidad premium</p>
+        <p class="precio">$34.900</p>
+        <a href="/form" class="agregar-carrito btn-2" data-id="1">Pagar</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="imagenes/Litros4P.png" alt="">
+      <div class="product-txt">
+        <h3>Lt Chocolate Gourmet</h3>
+        <p>calidad premium</p>
+        <p class="precio">$34.900</p>
+        <a href="/form" class="agregar-carrito btn-2" data-id="1">Pagar</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="imagenes/Litros5P.png" alt="">
+      <div class="product-txt">
+        <h3>Lt Brownie Gourmet</h3>
+        <p>calidad premium</p>
+        <p class="precio">$34.900</p>
+        <a href="/form" class="agregar-carrito btn-2" data-id="1">Pagar</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="imagenes/Litros6P.png" alt="">
+      <div class="product-txt">
+        <h3>Lt Vainilla Gourmet</h3>
+        <p>calidad premium</p>
+        <p class="precio">$34.900</p>
+        <a href="/form" class="agregar-carrito btn-2" data-id="1">Pagar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services">
+  <h2>Acerca De</h2>
+  <div class="services-content container">
+    <div class="service">
+      <img src="imagenes/SonicP.png" alt="">
+    </div>
+
+    <div class="service">
+      <img src="imagenes/SoñadoraP.png" alt="">
+    </div>
+  </div>
+</section>
+
+<footer class="footer container">
+  <div class="link">
+    <h3>Correo</h3>
+    <ul>
+      <li><a href="mailto:afavila-2022a@corhuila.edu.co">Envianos un correo</a></li>
+    </ul>
+  </div>
+
+  <div class="link">
+    <h3>Llamanos</h3>
+    <ul>
+      <li><a href="#">3009120963</a></li>
+    </ul>
+  </div>
+
+  <div class="link">
+    <h3>Dirección</h3>
+    <ul>
+      <li><a href="#">Calle 86a 13-42</a></li>
+      <li><a href="#">Bogota, Colombia</a></li>
+    </ul>
+  </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>

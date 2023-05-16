@@ -48,7 +48,7 @@ public class UsuarioController {
 
 
     //Visualizar datos de usuarios base de datos
-    @GetMapping({"/listar",""})
+    @GetMapping({"/","/listar",""})
     public String listarUsuarios(@RequestParam(name = "page",defaultValue = "0") int page, Model model){
 
         Pageable pageRequest = PageRequest.of(page,4);
@@ -85,7 +85,7 @@ public class UsuarioController {
 
         status.setComplete();
         flash.addFlashAttribute("success", mensaje);
-        return "redirect:/listar";
+        return "redirect:/formd";
     }
 
 

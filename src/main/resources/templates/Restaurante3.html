@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" contents="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Domino's Pizza</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins :wght@400;600;700;800&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    background-color: #2D343C;
+}
+
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header{
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0.2)),
+        url(imagenes/HGRMiQ___400x400.jpg);
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        min-height: 70vh;
+}
+
+.menu{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo{
+    color: aliceblue;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.menu .navbar ul li{
+    position: relative;
+    float: left;
+
+}
+
+.menu .navbar ul li a{
+    font-size: 18px;
+    padding: 20px;
+    color: aliceblue;
+    display: block;
+    font-weight: 600;
+}
+
+.menu .navbar ul li a:hover{
+    color: #F35200
+}
+
+#menu{
+    display: none;
+}
+
+.menu-icono{
+    width: 25px;
+}
+
+.menu label{
+    cursor: pointer;
+    display: none;
+}
+
+.submenu{
+    position: relative;
+}
+
+.submenu #carrito{
+    display: none;
+}
+
+.submenu:hover #carrito{
+    display: block;
+    position: absolute;
+    right: 0;
+    backdrop-filter: blur(10px);
+    top: 100%;
+    z-index: 1;
+    background-color: #4E4B5076;
+    padding: 20px;
+    min-width: 400px;
+}
+
+table{
+    width: 100%;
+}
+
+th, td{
+    color: #FFFFFF;
+}
+
+.borrar{
+    background-color: #F35200;
+    border-radius: 50%;
+    padding: 5px 10px;
+    color: #FFFFFF;
+    font-weight: 800;
+}
+
+.header-txt{
+    padding: 0 200px;
+    text-align: center;
+}
+.header-txt h1{
+    font-size: 70px;
+    line-height: 80px;
+    color: #FFFFFF;
+    margin-bottom: 20px;
+}
+
+.header-txt p{
+    font-size: 16px;
+    color: aliceblue;
+    margin-bottom: 20px;
+}
+
+.btn-1{
+    display: inline-block;
+    background-color: #F35200;
+    color: #FFFFFF;
+    padding: 13px 35px;
+    border-radius: 25px;
+    text-transform: capitalize;
+    font-size: 16px;
+}
+
+.btn-1:hover{
+    background-color: #d74801;
+}
+
+.icons{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+    padding: 10px;
+}
+
+.icon img{
+    width: 30px;
+}
+
+.products{
+    padding: 70px 0 0 0;
+    text-align: center;
+}
+
+h2{
+    color: #FFFFFF;
+    font-size: 40px;
+    margin-bottom: 35px;
+}
+
+.products-content{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 35px;
+}
+
+.product img{
+    width: 250px;
+}
+
+.product h3{
+    font-size: 20px;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+}
+
+.product p{
+    font-size: 16px;
+    color: #ECEBEB;
+    margin-bottom: 10px;
+}
+
+.precio{
+    color: #F35200 !important;
+}
+
+.btn-2{
+    display: inline-block;
+    padding: 8px 17px;
+    border: 1px solid #F35200;
+    border-radius: 20px;
+    color: #FFFFFF;
+}
+
+.btn-2:hover{
+    background-color: #F35200;
+}
+
+.services{
+    margin-top: 100px;
+    padding: 70px 0;
+    background-color: #EBEFF1;
+    text-align: center;
+}
+
+.services h2{
+    color: #2D343C;
+}
+
+.services-content{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 35px;
+}
+
+.service{
+    background-color: #FFFFFF;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    padding: 35px;
+    text-align: left;
+}
+
+.service h3{
+    font-size: 20px;
+    color: #2D343C;
+    margin-bottom: 10px;
+}
+
+hr{
+    width: 100px;
+    border: 2px solid #F35200;
+}
+
+.service p{
+    font-size: 16px;
+    color: #575757;
+    margin-top: 15px;
+}
+
+.footer{
+    padding: 50px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.link h3{
+    color: #FFFFFF;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.link a{
+    font-size: 16px;
+    color: #ECEBEB;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.link a:hover{
+    color: #F35200;
+}
+
+@media(max-width: 991px){
+    .menu{
+        padding: 20px;
+    }
+
+    .menu label{
+        display: initial;
+    }
+
+    .menu .navbar{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #2D343C;
+        display: none;
+    }
+
+    .menu .navbar ul li{
+        width: 100%;
+    }
+
+    #menu:checked ~ .navbar{
+        display: initial;
+    }
+
+    .logo{
+        display: none;
+    }
+
+    .submenu:hover #carrito{
+        min-width: 100%;
+    }
+
+    .header{
+        min-height: 0vh;
+    }
+
+    .header-content{
+        padding: 100px 30px;
+    }
+
+    .header-txt{
+        padding: 0;
+    }
+
+    .products{
+        padding: 30px;
+    }
+
+    .products-content{
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .services{
+        padding: 30px;
+        margin: 0;
+    }
+
+    .services-content{
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .footer{
+        flex-direction: column;
+        text-align: center;
+    }
+}
+</style>
+
+<body>
+<header class="header">
+  <div class="menu container">
+    <a href="#" class="logo"></a>
+    <input type="checkbox" id="menu" />
+    <label for="menu">
+      <img src="images/menu.png" class="menu-icono" alt="">
+    </label>
+    <nav class="navbar">
+      <ul>
+      </ul>
+    </nav>
+    <div>
+      <ul>
+        <li class="submenu">
+          <img src="images/car.svg" id="img-carrito" alt="">
+          <div id="carrito">
+            <table id="lista-carrito">
+              <thead>
+              <tr>
+                <th>Imagen<hr></th>
+                <th>Nombre<hr></th>
+                <th>Precio<hr></th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+            <a href="#" id="vaciar-carrito" class="btn-2">Vaciar Carrito</a>
+            <a target="_blank" href="file:///C:/Users/alvar/OneDrive/Escritorio/Codigos/Programacion%20II/Proyecto/CrudSpringBoot/src/main/resources/templates/Interfaces/Domicilio.html" class="btn-2">Comprar</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="header-content container">
+    <div class="header-txt">
+      <h1>Domino's Pizza</h1>
+      <p>
+        Domino's Pizza es una empresa de comida rápida estadounidense de restaurantes,
+        especializada en la elaboración de pizzas. Con sede en Ann Arbor, Míchigan.
+        Fundada por Tom Monaghan y James Monaghan en 1960, quien había abierto su primera
+        pizzería en Ypsilanti, Míchigan. En la actualidad cuenta con más de 14.500 establecimientos
+        y está establecida en 89 países y territorios.
+      </p>
+      <a href="#" class="btn-1">seccion menu</a>
+    </div>
+  </div>
+</header>
+<section class="icons">
+  <div class="icon">
+    <img src="images/i1.svg" alt="">
+  </div>
+  <div class="icon">
+    <img src="images/i2.svg" alt="">
+  </div>
+  <div class="icon">
+    <img src="images/i3.svg" alt="">
+  </div>
+  <div class="icon">
+    <img src="images/i4.svg" alt="">
+  </div>
+  <div class="icon">
+    <img src="images/i5.svg" alt="">
+  </div>
+  <div class="icon">
+    <img src="images/i6.svg" alt="">
+  </div>
+  <div class="icon">
+    <img src="images/i7.svg" alt="">
+  </div>
+  <div class="icon">
+    <img src="images/i8.svg" alt="">
+  </div>
+  <div class="icon">
+    <img src="images/i9.svg" alt="">
+  </div>
+  <div class="icon">
+    <img src="images/i10.svg" alt="">
+  </div>
+</section>
+
+<section class="products containers" id="lista-1">
+  <h2>Pizzas</h2>
+  <div class="products-content">
+
+    <div class="product">
+      <img src="imagenes/Pizzas1DP.png" alt="">
+      <div class="product-txt">
+        <h3>Hawaiana</h3>
+        <p>calidad premium</p>
+        <p class="precio">$16.900</p>
+        <a href="/form" class="agregar-carrito btn-2" data-id="1">Pagar</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="imagenes/Pizzas2DP.png" alt="">
+      <div class="product-txt">
+        <h3>Fiesta Pepperoni</h3>
+        <p>calidad premium</p>
+        <p class="precio">$20.900</p>
+        <a href="/form" class="agregar-carrito btn-2" data-id="1">Pagar</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="imagenes/Pizzas3DP.png" alt="">
+      <div class="product-txt">
+        <h3>Super Pollo</h3>
+        <p>calidad premium</p>
+        <p class="precio">$17.900</p>
+        <a href="/form" class="agregar-carrito btn-2" data-id="1">Pagar</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="imagenes/Pizzas4DP.png" alt="">
+      <div class="product-txt">
+        <h3>3 Estaciones</h3>
+        <p>calidad premium</p>
+        <p class="precio">$22.900</p>
+        <a href="/form" class="agregar-carrito btn-2" data-id="1">Pagar</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="imagenes/Pizzas5DP.png" alt="">
+      <div class="product-txt">
+        <h3>Americana</h3>
+        <p>calidad premium</p>
+        <p class="precio">$19.900</p>
+        <a href="/form" class="agregar-carrito btn-2" data-id="1">Pagar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="products containers" id="lista-2">
+  <h2>Acompañamientos</h2>
+  <div class="products-content">
+
+    <div class="product">
+      <img src="imagenes/Acom1DP.png" alt="">
+      <div class="product-txt">
+        <h3>Canela Baitz</h3>
+        <p>calidad premium</p>
+        <p class="precio">$8.800</p>
+        <a href="/form" class="agregar-carrito btn-2" data-id="1">Pagar</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="imagenes/Acom2DP.png" alt="">
+      <div class="product-txt">
+        <h3>Palitos de Queso y Arequipe</h3>
+        <p>calidad premium</p>
+        <p class="precio">$9.700</p>
+        <a href="/form" class="agregar-carrito btn-2" data-id="1">Pagar</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="imagenes/Acom3DP.png" alt="">
+      <div class="product-txt">
+        <h3>Arequipe Rolls</h3>
+        <p>calidad premium</p>
+        <p class="precio">$10.300</p>
+        <a href="/form" class="agregar-carrito btn-2" data-id="1">Pagar</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <img src="imagenes/Acom4DP.png" alt="">
+      <div class="product-txt">
+        <h3>Palitos de Queso</h3>
+        <p>calidad premium</p>
+        <p class="precio">$8.500</p>
+        <a href="/form" class="agregar-carrito btn-2" data-id="1">Pagar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services">
+  <h2>Acerca De</h2>
+  <div class="services-content container">
+    <div class="service">
+      <h3>Productos</h3>
+      <hr>
+      <p>
+        El producto estrella es la pizza en sus distintas variedades. Domino's se caracterizaba
+        por utilizar una masa común (clásica) al estilo norteamericano, con más queso y grosor que
+        las de estilo italiano. En 1989 introdujo la pizza de masa gruesa (pan pizza) y desde
+        entonces la variedad ha aumentado, incluyéndose masa fina, orilla relena de queso, masa
+        crujiente rellena de queso crema (double decker) y calzone entre otras. La oferta depende
+        de cada país: en España, las masas con borde relleno incluyen una variedad con queso de cabra.
+        Y en Israel se probó por primera vez una pizza vegana con queso a base de leche de soja.
+      </p>
+    </div>
+
+    <div class="service">
+      <h3>Restaurantes</h3>
+      <hr>
+      <p>
+        Hay tres empresas que han adquirido acuerdos de franquicia principal a nivel mundial:<br/>
+
+        -Domino's Pizza Group: Es una filial británica que opera en la Bolsa de Londres y tiene
+        los derechos exclusivos de gestión, apertura y franquiciados en Reino Unido, Irlanda, Alemania,
+        Suiza, Liechtenstein y Luxemburgo. Es la franquiciadora de Domino's más rentable a nivel mundial
+        y posee 860 establecimientos.<br/>
+        -Domino's Pizza Enterprises: Es una filial australiana que posee los derechos de Domino's en
+        Australia, Nueva Zelanda, Francia, Bélgica y Países Bajos. La empresa se instaló en Australia en 1983,
+        y tras una serie de altibajos fue adquirida en 1993 por otra empresa local, Silvio's Pizza, que dos
+        años más tarde renombró todos sus locales con la marca norteamericana.<br/>
+        -Jubilant FoodWorks: Es una compañía india que posee los derechos en India, Nepal, Bangladés y Sri Lanka.
+        Después de Estados Unidos, la India es el país con mayor presencia de la multinacional, más de 1.000
+        restaurantes en total.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer container">
+  <div class="link">
+    <h3>Correo</h3>
+    <ul>
+      <li><a href="mailto:afavila-2022a@corhuila.edu.co">Envianos un correo</a></li>
+    </ul>
+  </div>
+
+  <div class="link">
+    <h3>Llamanos</h3>
+    <ul>
+      <li><a href="#">3009120963</a></li>
+    </ul>
+  </div>
+
+  <div class="link">
+    <h3>Dirección</h3>
+    <ul>
+      <li><a href="#">Calle 86a 13-42</a></li>
+      <li><a href="#">Bogota, Colombia</a></li>
+    </ul>
+  </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>

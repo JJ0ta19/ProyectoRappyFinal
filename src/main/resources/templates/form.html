@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head th:replace="layout/layout :: head">
     <meta charset="UTF-8">
 
@@ -68,11 +68,15 @@
                             </select>
                         </div>
                         <div class="box-footer">
-                            <input type="submit" value="Guardar" class="btn btn-outline-success"> <br> <br>
-                            <a th:href="@{/login}" class="btn btn-outline-danger">Volver</a> <br>
+                            <a th:href="@{/listar}" sec:authorize="hasRole('ADMIN')" class="btn btn-outline-danger">Volver a la base de datos</a> <br>
+                            <input sec:authorize="hasRole('ADMIN')" type="submit" value="Guardar Usuario" class="btn btn-outline-success"> <br> <br>
+                            <input type="submit" value="Guardar Usuario" class="btn btn-outline-success"> <br> <br>
+                            <a th:href="@{/index}" class="btn btn-outline-danger">Volver a la pantalla principal</a> <br>
                         </div>
 
                     </form>
+
+
                 </div>
             </div>
         </div>
