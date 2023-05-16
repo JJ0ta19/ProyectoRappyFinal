@@ -5,7 +5,6 @@ import com.lowagie.text.*;
 import com.lowagie.text.Font;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
-import com.lowagie.text.pdf.PdfTable;
 import com.lowagie.text.pdf.PdfWriter;
 
 import javax.servlet.http.HttpServletResponse;
@@ -39,6 +38,8 @@ public class UsuarioExporterPDF {
         tabla.addCell(celda);
         celda.setPhrase(new Phrase("Email",fuente));
         tabla.addCell(celda);
+        celda.setPhrase(new Phrase("Ciudad",fuente));
+        tabla.addCell(celda);
         celda.setPhrase(new Phrase("Fecha",fuente));
         tabla.addCell(celda);
         celda.setPhrase(new Phrase("Telefono",fuente));
@@ -53,6 +54,7 @@ public class UsuarioExporterPDF {
             tabla.addCell(usuario.getNombre());
             tabla.addCell(usuario.getApellido());
             tabla.addCell(usuario.getEmail());
+            tabla.addCell(usuario.getCiudad());
             tabla.addCell(usuario.getFecha().toString());
             tabla.addCell(String.valueOf(usuario.getTelefono()));
             tabla.addCell(usuario.getSexo());
@@ -73,11 +75,11 @@ public class UsuarioExporterPDF {
         titulo.setAlignment(Paragraph.ALIGN_CENTER);
         documento.add(titulo);
 
-        PdfPTable tabla = new PdfPTable(7);
+        PdfPTable tabla = new PdfPTable(8);
         tabla.setWidthPercentage(100);
         tabla.setSpacingBefore(15);
         //linea de codigo para asignar espacios entre tablas
-        tabla.setWidths(new float[]{1f,2.3f,2.3f,6f,2.9f,3.5f,2f});
+        tabla.setWidths(new float[]{1f,2.3f,2.3f,6f,2.3f,2.9f,3.5f,2f});
         tabla.setWidthPercentage(110);
 
         escribirCabeceraDeLaTabla(tabla);

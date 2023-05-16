@@ -1,4 +1,4 @@
-package com.example.CrudSpringBoot;
+package com.example.CrudSpringBoot.Seguridad;
 
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface UsuarioRepositoryService {
 
+
     public List<Usuario> findAll();
 
     public Page<Usuario> findAll(Pageable pageable);

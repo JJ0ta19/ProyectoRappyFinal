@@ -1,5 +1,8 @@
-package com.example.CrudSpringBoot;
+package com.example.CrudSpringBoot.Seguridad;
 
+import com.example.CrudSpringBoot.Entity.Usuario;
+import com.example.CrudSpringBoot.Repository.UsuarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,11 +15,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    //Encriptar contraseña de nuestra pagina
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    //Encriptar ciudad de nuestra pagina
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
@@ -26,6 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     @Bean
     protected UserDetailsService userDetailsService() {
+
         UserDetails usuario1= User.withUsername("jhon")
                 .password("$2a$10$vFC1FDtBtswlc2AFEqPtP.IX7B236qFzQST9/No49zrFVozCIb8C.")
                 .roles("USER")
@@ -44,12 +54,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/form/*","/eliminar/*").hasRole("ADMIN")
+                .antMatchers("/form").permitAll()
+                .antMatchers("/eliminar/*").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                    .loginPage("/login")
-                    .permitAll()
+                .loginPage("/login")
+                .permitAll()
                 .and()
                 .logout().permitAll();
 

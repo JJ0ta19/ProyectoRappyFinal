@@ -52,14 +52,18 @@ public class UsuarioExporterExcel {
         celda.setCellStyle(estilo);
 
         celda = fila.createCell(4);
-        celda.setCellValue("FECHA");
+        celda.setCellValue("CIUDAD");
         celda.setCellStyle(estilo);
 
         celda = fila.createCell(5);
-        celda.setCellValue("TELEFONO");
+        celda.setCellValue("FECHA");
         celda.setCellStyle(estilo);
 
         celda = fila.createCell(6);
+        celda.setCellValue("TELEFONO");
+        celda.setCellStyle(estilo);
+
+        celda = fila.createCell(7);
         celda.setCellValue("GENERO");
         celda.setCellStyle(estilo);
     }
@@ -72,7 +76,7 @@ public class UsuarioExporterExcel {
         fuente.setFontHeight(14);
         estilo.setFont(fuente);
 
-        for (Usuario usuario : listaUsuarios ){
+        for (Usuario usuario : listaUsuarios){
             Row fila = hoja.createRow(numeroFilas++);
 
             Cell celda = fila.createCell(0);
@@ -96,18 +100,23 @@ public class UsuarioExporterExcel {
             celda.setCellStyle(estilo);
 
             celda = fila.createCell(4);
-            celda.setCellValue(usuario.getFecha().toString());
+            celda.setCellValue(usuario.getCiudad());
             hoja.autoSizeColumn(4);
             celda.setCellStyle(estilo);
 
             celda = fila.createCell(5);
-            celda.setCellValue(usuario.getTelefono());
+            celda.setCellValue(usuario.getFecha().toString());
             hoja.autoSizeColumn(5);
             celda.setCellStyle(estilo);
 
             celda = fila.createCell(6);
-            celda.setCellValue(usuario.getSexo());
+            celda.setCellValue(usuario.getTelefono());
             hoja.autoSizeColumn(6);
+            celda.setCellStyle(estilo);
+
+            celda = fila.createCell(7);
+            celda.setCellValue(usuario.getSexo());
+            hoja.autoSizeColumn(7);
             celda.setCellStyle(estilo);
         }
     }

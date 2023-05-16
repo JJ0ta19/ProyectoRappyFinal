@@ -5,7 +5,6 @@ import com.example.CrudSpringBoot.Paginacion.PageRender;
 import com.example.CrudSpringBoot.Reportes.UsuarioExporterExcel;
 import com.example.CrudSpringBoot.Reportes.UsuarioExporterPDF;
 import com.example.CrudSpringBoot.RepositoryService.UsuarioRepositoryService;
-import com.example.CrudSpringBoot.Service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,10 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -35,6 +31,9 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepositoryService usuarioService;
 
+
+
+    //Ver los datos de usuario
     @GetMapping("/ver/{id}")
     public String verDetallesDelUsuario(@PathVariable(value = "id") Long id, Map<String,Object> modelo, RedirectAttributes flash){
         Usuario usuario = usuarioService.findOne(id);
@@ -47,9 +46,12 @@ public class UsuarioController {
         return "ver";
     }
 
-    @GetMapping({"/","listar",""})
+
+    //Visualizar datos de usuarios base de datos
+    @GetMapping({"/listar",""})
     public String listarUsuarios(@RequestParam(name = "page",defaultValue = "0") int page, Model model){
-        Pageable pageRequest = PageRequest.of(page,5);
+
+        Pageable pageRequest = PageRequest.of(page,4);
         Page<Usuario> usuarios = usuarioService.findAll(pageRequest);
         PageRender<Usuario> pageRender = new PageRender<>("/listar", usuarios);
 
@@ -59,6 +61,8 @@ public class UsuarioController {
 
         return "listar";
     }
+
+
 
     @GetMapping("/form")
     public String mostrarFormularioDeRegistrarUsuario(Map<String,Object> modelo){
@@ -77,10 +81,13 @@ public class UsuarioController {
         String mensaje = (usuario.getId() != 0) ? "El empleado ha sido editato con exito" : "Empleado registrado con exito";
 
         usuarioService.save(usuario);
+
+
         status.setComplete();
         flash.addFlashAttribute("success", mensaje);
         return "redirect:/listar";
     }
+
 
     @GetMapping("/form/{id}")
     public String editarUsuario(@PathVariable(value = "id") long id, Map<String,Object> modelo,RedirectAttributes flash){
@@ -96,10 +103,12 @@ public class UsuarioController {
             flash.addFlashAttribute("error","El ID del usuario no puede ser cero");
             return "redirect:/listar";
         }
+
         modelo.put("usuario",usuario);
         modelo.put("titulo","Edición de usuarios");
         return "form";
     }
+
 
     @GetMapping("/eliminar/{id}")
     public String eliminarUsuario(@PathVariable (value = "id") Long id,RedirectAttributes flash){
@@ -109,6 +118,7 @@ public class UsuarioController {
         }
         return "redirect:/listar";
     }
+
 
     @GetMapping("/exportarPDF")
     public void exportarListadoDeUsuariosEnPDF(HttpServletResponse response) throws IOException {

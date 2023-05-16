@@ -22,7 +22,7 @@ public class PageRender<T>{
         this.paginas= new ArrayList<PageItem>();
 
         //Para que me muestre el maximo de paginacion que quiero, en este caso 5
-        numElementosPorPagina= 5;
+        numElementosPorPagina= 4;
         totalPaginas = page.getTotalPages();
         paginaActual = page.getNumber() + 1;
 

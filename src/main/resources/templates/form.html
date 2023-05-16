@@ -6,7 +6,8 @@
 </head>
 <body>
 
-    <header th:replace="layout/layout :: header"></header>
+
+    <!-- <header th:replace="layout/layout :: header"></header>-->
     <br>
     <div class="container">
         <div class="row">
@@ -17,12 +18,12 @@
                 <div class="card-body">
 
 
-
+                    <!-- Formulario con el metodo POST -->
                     <form th:action="@{/form}" th:object="${usuario}" method="POST">
                         <input type="hidden" th:field="*{id}" th:value="${usuario.id}"/>
 
 
-
+                        <!-- Casillas para rellenar los datos, con un mensaje de error llamado de properties por si ocurre un error -->
                         <div class="form-group">
                             <label>Nombre : </label>
                             <input type="text" th:field="*{nombre}" class="form-control" th:errorclass="'form-control alert-danger'"/>
@@ -34,11 +35,19 @@
                             <input type="text" th:field="*{apellido}" class="form-control" th:errorclass="'form-control alert-danger'"/>
                             <small class="form-text text-danger" th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></small>
                         </div>
+
                         <div class="form-group">
                             <label>Email : </label>
                             <input type="text" th:field="*{email}" class="form-control" th:errorclass="'form-control alert-danger'"/>
                             <small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
                         </div>
+
+                        <div class="form-group">
+                            <label>Ciudad : </label>
+                            <input type="text" th:field="*{ciudad}" class="form-control" th:errorclass="'form-control alert-danger'"/>
+                            <small class="form-text text-danger" th:if="${#fields.hasErrors('ciudad')}" th:errors="*{ciudad}"></small>
+                        </div>
+
                         <div class="form-group">
                             <label>Fecha : </label>
                             <input type="date" th:field="*{fecha}" class="form-control" th:errorclass="'form-control alert-danger'"/>
@@ -59,7 +68,8 @@
                             </select>
                         </div>
                         <div class="box-footer">
-                            <input type="submit" value="Guardar" class="btn btn-primary">
+                            <input type="submit" value="Guardar" class="btn btn-outline-success"> <br> <br>
+                            <a th:href="@{/login}" class="btn btn-outline-danger">Volver</a> <br>
                         </div>
 
                     </form>

@@ -19,9 +19,10 @@
                     <h4 class="card-title">
                         <a th:href="@{/form}" class="btn btn-primary">Agregar usuario</a>
 
-                        <a sec:authorize="hasRole('ADMIN')" th:href="@{/exportarPDF}" class="btn btn-dark">Exportar a PDF</a>
 
+                        <a sec:authorize="hasRole('ADMIN')" th:href="@{/exportarPDF}" class="btn btn-dark">Exportar a PDF</a>
                         <a sec:authorize="hasRole('ADMIN')" th:href="@{/exportarExcel}" class="btn btn-success">Exportar a Excel</a>
+
                     </h4>
                     <table class="table table-striped">
                         <thead>
@@ -30,6 +31,7 @@
                                 <th>Nombre</th>
                                 <th>Apellido</th>
                                 <th>Email</th>
+                                <th>Ciudad</th>
                                 <th>Fecha</th>
                                 <th>Telefono</th>
                                 <th>Sexo</th>
@@ -44,6 +46,7 @@
                                 <td th:text="${usuario.nombre}"></td>
                                 <td th:text="${usuario.apellido}"></td>
                                 <td th:text="${usuario.email}"></td>
+                                <td th:text="${usuario.ciudad}"></td>
                                 <td th:text="${usuario.fecha}"></td>
                                 <td th:text="${usuario.telefono}"></td>
                                 <td th:text="${usuario.sexo}"></td>

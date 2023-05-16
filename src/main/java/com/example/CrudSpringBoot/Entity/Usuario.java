@@ -2,6 +2,7 @@ package com.example.CrudSpringBoot.Entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.boot.context.properties.ConstructorBinding;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -12,8 +13,9 @@ import java.util.Date;
 
 @Getter
 @Setter
+@ConstructorBinding
 @Entity
-@Table(name = "usuarios")
+@Table(name = "usuarios", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class Usuario {
 
     @Id
@@ -33,21 +35,22 @@ public class Usuario {
     @NotNull
     private int telefono;
 
-
     private String sexo;
 
-    private String usuario;
+    @NotNull
+    private String ciudad;
 
     @NotNull
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fecha;
 
+
+
+
     public Usuario() {
         super();
     }
-
-
 
 
 }
